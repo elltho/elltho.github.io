@@ -1,1 +1,135 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ5RWWNEXF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RZ5RWWNEXF');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Growth Marketing Resurser</title>
+  <meta name="description" content="Snabb åtkomst till centrala resurser inom Growth Marketing." />
+
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #db0e0e;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 180px;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card a {
+      margin-top: auto;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Growth Marketing Resurser</h1>
+
+  <section class="grid">
+<div class="card">
+      <h2>Growth Marketing på Berghs</h2>
+      <p>En growth marketer är länken mellan kund, målgrupp och ökad tillväxt.</p>
+      <a href="https://www.berghs.se/program/growth-marketing/" target="_blank" rel="noopener">Besök Berghs →</a>
+    </div>
+
+    <div class="card">
+      <h2>Google Analytics 4</h2>
+      <p>Spåra användarbeteenden och mät viktiga KPI:er med GA4.</p>
+      <a href="https://analytics.google.com/" target="_blank" rel="noopener">Öppna GA4 →</a>
+    </div>
+
+    <div class="card">
+      <h2>Google Tag Manager</h2>
+      <p>Hantera och distribuera taggar.</p>
+      <a href="https://tagmanager.google.com/" target="_blank" rel="noopener">Öppna GTM →</a>
+    </div>
+  </section>
+
+  <div style="text-align:center; margin: 40px 0;">
+    <img src="https://i.pinimg.com/736x/04/cd/7b/04cd7b442f04e0f9682824a610ee1324.jpg" 
+         alt="Inspirationsbild"
+         style="width:70%; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.25);"/>
+  </div>
+
+  <footer>
+    © <span id="year"></span> Ellens Growth Marketing Hub
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
 
