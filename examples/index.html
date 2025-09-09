@@ -24,9 +24,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script>
         window.dataLayer = window.dataLayer || [];
     </script>
-    
-    <!-- Analytics Script (load before page content) -->
-    <script src="js/analytics.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -36,7 +33,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
         <!--Breadcrumbs Start-->
         <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
+            <li><a href="https://elltho.github.io/">Home</a></li>
         </ul>
         <!--Breadcrumbs End-->
     </header>
@@ -45,18 +42,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h1>Demo shop</h1>
         </section>
         <section class="content">
-            <p>This page demonstrates how to use the dataLayer for web analytics.</p>
-            <p>Open the Console and check the dataLayer as you click the links and buttons below this text.</p>
+            <p>Welcome to my shop.</p>
         </section>
         <nav>
-    <ul>
-        <li><a href="https://elltho.github.io/" id="home-link">Home</a></li>
-        <li><a href="#" id="products-link">Products</a></li>
-        <li><a href="#" id="about-link">About</a></li>
-        <li><a href="#" id="contact-link">Contact</a></li>
-    </ul>
-</nav>
-
+            <ul>
+                <li><a href="https://elltho.github.io/" id="home-link">Home</a></li>
+                <li><a href="#" id="products-link">Products</a></li>
+                <li><a href="#" id="about-link">About</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
         <section id="hero" class="content">
              <button id="cta-button">Click Me!</button>
         </section>
@@ -86,5 +81,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <footer>
         <p>&copy; 2025 Web Analytics Demo</p>
     </footer>
+
+    <!-- Analytics Script -->
+    <script>
+        // Track nav link clicks
+        document.querySelectorAll("nav a, .breadcrumb a").forEach(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+
+                // Push event to dataLayer
+                window.dataLayer.push({
+                    event: "nav_click",
+                    link_id: link.id || "breadcrumb",
+                    link_text: link.textContent,
+                    link_url: link.href
+                });
+
+                // Navigate after small delay
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 200);
+            });
+        });
+
+        // Track CTA button
+        document.getElementById("cta-button").addEventListener("click", () => {
+            window.dataLayer.push({
+                event: "cta_click",
+                button_id: "cta-button"
+            });
+        });
+
+        // Track add-to-cart buttons
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", () => {
+                const product = button.closest(".product");
+                window.dataLayer.push({
+                    event: "add_to_cart",
+                    product_id: product.dataset.productId,
+                    product_name: product.dataset.productName,
+                    product_price: product.dataset.productPrice
+                });
+            });
+        });
+    </script>
 </body>
 </html>
