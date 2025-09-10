@@ -278,10 +278,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Navigation bar -->
   <nav>
     <ul>
-      <li><a href="#resources">Resources</a></li>
-      <li><a href="#demo-shop">Demo Shop</a></li>
-      <li><a href="#diary">Diary</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a id="nav-resources" href="#resources">Resources</a></li>
+      <li><a id="nav-demo-shop" href="#demo-shop">Demo Shop</a></li>
+      <li><a id="nav-diary" href="#diary">Diary</a></li>
+      <li><a id="nav-about" href="#about">About</a></li>
     </ul>
   </nav>
 
@@ -367,11 +367,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         link.addEventListener('click', function () {
           window.dataLayer = window.dataLayer || [];
           dataLayer.push({
-            'event': 'linkClick',
-            'linkId': this.id,
-            'linkUrl': this.href,
-            'linkText': this.innerText.trim()
+            'event': 'navigation_click',
+            'link_id': this.id,
+            'link_url': this.href,
+            'link_text': this.innerText.trim(),
+            'timestamp': new Date().toISOString()
           });
+          console.log("dataLayer Push:", dataLayer[dataLayer.length - 1]);
         });
       });
     });
