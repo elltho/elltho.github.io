@@ -397,6 +397,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- Hover tracking for smiley -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var smileys = document.querySelectorAll('.smiley');
+      smileys.forEach(function (smiley) {
+        smiley.addEventListener('mouseenter', function () {
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+            'event': 'smiley_hover',
+            'element_class': 'smiley',
+            'pageName': document.title
+          });
+          console.log("dataLayer Push:", dataLayer[dataLayer.length - 1]);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
 
