@@ -356,9 +356,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <footer>
+  <!-- Button at bottom for popup form -->
+  <div style="text-align:center; margin-top:40px;">
+    <button id="openFoodFormBtn" style="
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: 600;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    ">
+      Answer my question
+    </button>
+  </div>
+
+   <footer>
     © <span id="year"></span> Ellens Growth Marketing Hub
   </footer>
+
+  <!-- Popup Form -->
+  <div id="foodFormPopup" style="
+    display:none;
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+  ">
+    <div style="
+      background:white;
+      padding:30px;
+      border-radius:12px;
+      max-width:400px;
+      width:90%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    ">
+      <h2 style="margin-top:0; color: var(--text);">What is your favourite food?</h2>
+      <form id="foodForm">
+        <input type="text" name="favoriteFood" required
+          placeholder="Type your answer here..."
+          style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px;">
+        <div style="text-align:right;">
+          <button type="submit" style="
+            padding:10px 16px;
+            background:var(--accent);
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+          ">Submit</button>
+          <button type="button" id="closeFoodFormBtn" style="
+            margin-left:10px;
+            padding:10px 16px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            background:#f9f9f9;
+            cursor:pointer;
+          ">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Link click tracking with event types -->
   <script>
@@ -415,8 +477,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     });
   </script>
+
+  <!-- Popup form JS -->
+  <script>
+    const popupFood = document.getElementById('foodFormPopup');
+    document.getElementById('openFoodFormBtn').addEventListener('click', () => {
+      popupFood.style.display = 'flex';
+    });
+    document.getElementById('closeFoodFormBtn').addEventListener('click', () => {
+      popupFood.style.display = 'none';
+    });
+
+    document.getElementById('foodForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const favoriteFood = this.favoriteFood.value;
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: 'food_answer',
+        favorite_food: favoriteFood
+      });
+      console.log("Form submitted, favorite food:", favoriteFood);
+
+      popupFood.style.display = 'none';
+      this.reset();
+    });
+  </script>
 </body>
 </html>
-
-
-
