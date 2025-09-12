@@ -372,7 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </button>
   </div>
 
-   <footer>
+  <footer>
     © <span id="year"></span> Ellens Growth Marketing Hub
   </footer>
 
@@ -483,6 +483,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const popupFood = document.getElementById('foodFormPopup');
     document.getElementById('openFoodFormBtn').addEventListener('click', () => {
       popupFood.style.display = 'flex';
+
+      // Track form open
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: 'form_open',
+        form_name: 'favorite_food_form'
+      });
+      console.log("Form opened");
     });
     document.getElementById('closeFoodFormBtn').addEventListener('click', () => {
       popupFood.style.display = 'none';
