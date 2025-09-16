@@ -80,11 +80,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* alltid 4 kolumner på desktop */
       gap: 20px;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1200px;
       margin-bottom: 40px;
+    }
+
+    /* Responsiv layout */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolumner på tablet */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr; /* 1 kolumn på mobil */
+      }
     }
 
     .card {
@@ -303,6 +316,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Hantera och distribuera taggar.</p>
       <a id="link-gtm" href="https://tagmanager.google.com/" target="_blank" rel="noopener">Öppna GTM →</a>
     </div>
+
+    <div class="card">
+      <h2>Looker Studio</h2>
+      <p>Skapa interaktiva dashboards och visualisera data på ett enkelt sätt.</p>
+      <a id="link-looker" href="https://lookerstudio.google.com/" target="_blank" rel="noopener">Öppna Looker Studio →</a>
+    </div>
   </section>
 
   <!-- Demo Shop image -->
@@ -508,8 +527,4 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       console.log("Form submitted, favorite food:", favoriteFood);
 
       popupFood.style.display = 'none';
-      this.reset();
-    });
-  </script>
-</body>
-</html>
+      this
