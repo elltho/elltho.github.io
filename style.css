@@ -1,0 +1,464 @@
+/* 1. RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000;
+    line-height: 1.4;
+}
+
+/* 2. NAVIGATION */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    font-weight: 500;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo a { text-decoration: none; color: inherit; }
+
+.nav-links a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+}
+
+/* 3. HOME PAGE HERO (The middle images) */
+.hero-section {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.hero-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* 4. HOME PAGE COLORED BOXES (The 3-column grid) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 500px;
+}
+
+.card {
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.ultra-bold { font-size: 4rem !important; text-transform: uppercase; display: block; }
+
+/* Colors */
+.yellow { background-color: #f2e9c1; color: #1a4da1; }
+.blue { background-color: #1a4da1; color: #f2e9c1; }
+.purple { background-color: #c9a7d3; color: #000; }
+
+.btn {
+    border: 1px solid currentColor;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    display: inline-block;
+    width: fit-content;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+}
+
+/* 5. WORK PAGE - BUDDYPRO GRID (Isolated) */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.buddy-box {
+    background: #ffffff;
+    border-radius: 30px;
+    height: 600px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.buddy-slider-area {
+    height: 60%;
+    background: #9279f2;
+    position: relative;
+    overflow: hidden;
+}
+
+.buddy-track {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.buddy-track::-webkit-scrollbar { display: none; }
+
+.buddy-track img {
+    flex: 0 0 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 25px;
+    scroll-snap-align: center;
+}
+
+.buddy-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.buddy-text-area {
+    height: 40%;
+    padding: 25px;
+    background: #fff;
+}
+
+.buddy-title { font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+.buddy-meta { font-family: monospace; font-size: 0.75rem; color: #888; text-transform: uppercase; margin-bottom: 12px; }
+.buddy-desc { font-size: 0.9rem; line-height: 1.5; color: #333; }
+
+/* Placeholder for Work Page */
+.placeholder-card {
+    height: 600px;
+    background: #f9f9f9;
+    border: 1px dashed #ddd;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+}
+
+/* 6. MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+    .grid-container, .work-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-section { height: 50vh; }
+}
+/* --- TESTIMONIAL REFINEMENT --- */
+
+.testimonial-section {
+    padding: 10vh 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid #eee; /* Subtle separator */
+}
+
+.big-header {
+    font-size: 5rem; 
+    font-weight: 900; 
+    letter-spacing: -2px; 
+    margin-bottom: 4rem;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 4rem;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.quote-author {
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.course-name {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* Tablet/Mobile fix */
+@media (max-width: 768px) {
+    .big-header { font-size: 3rem; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+}
+/* This ONLY targets the main tag when it's on the Cases/Work page */
+main:has(.work-grid) {
+    padding-bottom: 0 !important;
+}
+
+/* These classes are unique to your Cases page, so they won't exist on Home */
+.testimonial-section {
+    padding-top: 2vh; 
+    padding-bottom: 10vh; 
+    margin-top: 0 !important; 
+    border-top: 1px solid #eee;
+}
+/* Target the button inside the blue card specifically */
+.card.blue .btn {
+    color: #f0e6d2 !important; /* Matches your light yellow text */
+    border-color: #f0e6d2 !important;
+}
+
+.card.blue .btn:hover {
+    background-color: #f0e6d2 !important;
+    color: #2b4d91 !important; /* The blue background color */
+    border-color: #f0e6d2 !important;
+}
+/* --- CONTACT PAGE REFINEMENT --- */
+
+.contact-wrapper {
+    padding: 10vh 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start; /* Aligns text to top of image */
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.contact-content {
+    flex: 1;
+    min-width: 400px;
+}
+
+.contact-wrapper .big-header {
+    font-size: 5.5rem; /* Bold editorial size */
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -3px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.contact-sub {
+    font-size: 1.4rem;
+    margin-bottom: 3.5rem;
+    color: #333;
+    max-width: 500px;
+}
+
+.contact-primary {
+    margin-bottom: 4rem;
+}
+
+.email-link {
+    font-size: 2.2rem;
+    color: #000000 !important; /* Forces the color to black */
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 3px solid #000000; /* Matches the underline to the text */
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.email-link:hover {
+    opacity: 0.6; /* Gives a subtle "clickable" feel on hover */
+}
+
+.phone-number {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.contact-socials {
+    display: flex;
+    gap: 2rem;
+    font-family: monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.contact-socials a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-socials a:hover {
+    color: #1a4da1;
+}
+
+.profile-container {
+    flex: 0 0 320px; /* Small and editorial */
+    margin-top: 2rem;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 450px; /* Gives it a consistent height */
+    object-fit: cover; /* This ensures your face isn't stretched */
+    filter: grayscale(100%);
+    border-radius: 2px;
+}
+
+/* Mobile Fixes */
+@media (max-width: 1024px) {
+    .contact-wrapper { flex-direction: column; padding: 5vh 2rem; }
+    .contact-content { min-width: 100%; }
+    .contact-wrapper .big-header { font-size: 3.5rem; }
+    .profile-container { flex: 1; width: 100%; }
+}
+/* --- ABOUT / CV PAGE REFINEMENTS --- */
+
+.about-cv-container {
+    padding: 10vh 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about-cv-container .big-header {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -3px;
+    margin-bottom: 2rem;
+}
+
+.about-cv-container .intro-text {
+    font-size: 1.6rem;
+    max-width: 800px;
+    line-height: 1.4;
+    margin-bottom: 5rem;
+}
+
+.about-cv-container .cv-grid {
+    display: flex;
+    gap: 100px;
+}
+
+.about-cv-container .cv-sidebar {
+    flex: 0 0 300px;
+}
+
+.about-cv-container .sidebar-block {
+    margin-bottom: 3rem;
+}
+
+.about-cv-container .sidebar-block h3 {
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.about-cv-container .sidebar-block p {
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.about-cv-container .cv-main-list {
+    flex: 1;
+}
+
+.about-cv-container .cv-section h2 {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #999;
+    letter-spacing: 3px;
+    margin-bottom: 3rem;
+}
+
+.about-cv-container .cv-entry {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 4rem;
+}
+
+.about-cv-container .year {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #888;
+    min-width: 150px; /* Increased to fit "Jan 2024 – Aug 2025" on one line */
+    line-height: 1.8;
+}
+
+.about-cv-container .role {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.about-cv-container .company {
+    color: #1a4da1; /* Signature blue */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 5px 0 15px 0;
+}
+
+.about-cv-container .description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+    max-width: 700px; /* Slightly wider for the full descriptions */
+    margin-top: 12px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .about-cv-container .cv-grid { flex-direction: column; gap: 50px; }
+    .about-cv-container .big-header { font-size: 4rem; }
+    .about-cv-container .cv-entry { flex-direction: column; gap: 10px; }
+}
