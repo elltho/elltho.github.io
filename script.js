@@ -1,76 +1,76 @@
 /* --- 1. HERO IMAGE SWAP (Home Page) --- */
 const images = [
-    'assets/hero-1.jpg',
-    'assets/hero-2.jpg',
-    'assets/hero-3.jpg',
-    'assets/hero-4.jpg'
+  'assets/hero-1.jpg',
+  'assets/hero-2.jpg',
+  'assets/hero-3.jpg',
+  'assets/hero-4.jpg'
 ];
 
 let currentIndex = 0;
 const imgElement = document.getElementById('hero-img');
 
 if (imgElement) {
-    function changeImage() {
-        imgElement.style.opacity = 0;
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            imgElement.src = images[currentIndex];
-            imgElement.style.opacity = 1;
-        }, 400); 
-    }
-    setInterval(changeImage, 4000);
+  function changeImage() {
+    imgElement.style.opacity = 0;
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      imgElement.src = images[currentIndex];
+      imgElement.style.opacity = 1;
+    }, 400);
+  }
+  setInterval(changeImage, 4000);
 }
 
 /* --- 2. MULTI-SLIDER LOGIC (Cases Page) --- */
-// We now pass 'sliderId' so the function knows which box to scroll
 function scrollSlider(sliderId) {
-    const slider = document.getElementById(sliderId);
-    
-    if (slider) {
-        const scrollAmount = slider.clientWidth;
-        
-        // If we're at the end, loop back to the start
-        if (slider.scrollLeft + scrollAmount >= slider.scrollWidth - 10) {
-            slider.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            // Otherwise, scroll by one full box width
-            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
+  const slider = document.getElementById(sliderId);
+
+  if (slider) {
+    const scrollAmount = slider.clientWidth;
+
+    if (slider.scrollLeft + scrollAmount >= slider.scrollWidth - 10) {
+      slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
-}window.dataLayer = window.dataLayer || [];
+  }
+}
 
-document.addEventListener('DOMContentLoaded', function () {
+/* --- 3. DATA LAYER CLICK TRACKING (All Pages) --- */
+window.dataLayer = window.dataLayer || [];
 
-  document.addEventListener('click', function (e) {
+function cleanText(t) {
+  return (t || '').replace(/\s+/g, ' ').trim();
+}
 
-    var link = e.target.closest('a');
-    if (link) {
-      var href = link.getAttribute('href');
-      if (!href || href === '#') return;
+document.addEventListener('click', function (e) {
+  // Track ALL links
+  const link = e.target.closest('a');
+  if (link) {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
 
-      window.dataLayer.push({
-        event: 'link_click',
-        link_text: (link.textContent || '').trim(),
-        link_url: link.href,
-        click_timestamp: new Date().getTime()
-      });
-      return;
-    }
+    window.dataLayer.push({
+      event: 'link_click',
+      link_text: cleanText(link.textContent),
+      link_url: link.href,
+      click_timestamp: new Date().getTime()
+    });
+    return;
+  }
 
-    var arrow = e.target.closest('.buddy-arrow');
-    if (arrow) {
-      var onclickText = arrow.getAttribute('onclick') || '';
-      var match = onclickText.match(/scrollSlider\('([^']+)'\)/);
-      var sliderId = match ? match[1] : '';
+  // Track arrow clicks (your slider arrows)
+  const arrow = e.target.closest('.buddy-arrow');
+  if (arrow) {
+    const onclickText = arrow.getAttribute('onclick') || '';
+    const match = onclickText.match(/scrollSlider\('([^']+)'\)/);
+    const sliderId = match ? match[1] : '';
 
-      window.dataLayer.push({
-        event: 'arrow_click',
-        arrow_slider_id: sliderId,
-        click_timestamp: new Date().getTime()
-      });
-      return;
-    }
-
-  });
-
+    window.dataLayer.push({
+      event: 'arrow_click',
+      arrow_slider_id: sliderId,
+      click_timestamp: new Date().getTime()
+    });
+    return;
+  }
 });
