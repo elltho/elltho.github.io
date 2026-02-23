@@ -37,4 +37,40 @@ function scrollSlider(sliderId) {
             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     }
-}
+}window.dataLayer = window.dataLayer || [];
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  document.addEventListener('click', function (e) {
+
+    var link = e.target.closest('a');
+    if (link) {
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+
+      window.dataLayer.push({
+        event: 'link_click',
+        link_text: (link.textContent || '').trim(),
+        link_url: link.href,
+        click_timestamp: new Date().getTime()
+      });
+      return;
+    }
+
+    var arrow = e.target.closest('.buddy-arrow');
+    if (arrow) {
+      var onclickText = arrow.getAttribute('onclick') || '';
+      var match = onclickText.match(/scrollSlider\('([^']+)'\)/);
+      var sliderId = match ? match[1] : '';
+
+      window.dataLayer.push({
+        event: 'arrow_click',
+        arrow_slider_id: sliderId,
+        click_timestamp: new Date().getTime()
+      });
+      return;
+    }
+
+  });
+
+});
