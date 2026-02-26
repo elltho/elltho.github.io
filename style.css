@@ -167,6 +167,35 @@ body {
 .buddy-meta { font-family: monospace; font-size: 0.75rem; color: #888; text-transform: uppercase; margin-bottom: 12px; }
 .buddy-desc { font-size: 0.9rem; line-height: 1.5; color: #333; }
 
+/* ADD THIS BLOCK TO YOUR style.css (near your .buddy-* styles) */
+
+/* Make <a class="buddy-box"> behave like your normal cards */
+.buddy-link{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Buddy cards get same subtle hover lift */
+.buddy-box{
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.buddy-link:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* Buddy-style CTA (so we don't reuse .feature-cta) */
+.buddy-cta{
+  display: inline-block;
+  margin-top: 12px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  border: 1px solid rgba(0,0,0,0.25);
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+}
+
 /* Placeholder for Work Page */
 .placeholder-card {
     height: 600px;
