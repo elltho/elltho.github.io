@@ -585,3 +585,14 @@ main:has(.work-grid) {
     font-size: 2.6rem;
   }
 }
+/* ===== CASES PAGE WIDTH OVERRIDE (SAFE) ===== */
+
+body.cases-page main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+body.cases-page .testimonial-section {
+    max-width: 1100px;
+    margin: 0 auto;
+}
