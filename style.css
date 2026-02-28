@@ -640,37 +640,3 @@ body.cases-page .work-grid{
 body.cases-page .buddy-track img{
   object-fit: contain !important;
 }
-/* =========================
-   ABOUT PAGE – MORE WHITESPACE
-   Only applies when body has class="about-page"
-   ========================= */
-
-body.about-page .about-cv-container{
-  max-width: 1050px;       /* try 1000px if you want even more whitespace */
-  margin: 0 auto;
-  padding-left: 4.5rem;
-  padding-right: 4.5rem;
-}
-
-/* Increase breathing room between sections */
-body.about-page .about-intro{
-  margin-bottom: 6rem;
-}
-
-/* Slightly increase gap between sidebar + main */
-body.about-page .cv-grid{
-  gap: 120px;
-}
-
-/* Make text blocks feel less dense */
-body.about-page .description{
-  max-width: 65ch;
-}
-
-/* Mobile refinement */
-@media (max-width: 1024px){
-  body.about-page .about-cv-container{
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
