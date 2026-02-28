@@ -83,6 +83,7 @@
           id="stickyBtn"
           disabled
           class="w-full sm:w-auto bg-gray-300 text-white font-black text-xs tracking-[0.2em] px-6 py-4 uppercase cursor-not-allowed transition"
+          type="button"
         >
           Get My Brand Mirror
         </button>
@@ -120,52 +121,98 @@
     </div>
   </section>
 
-  <!-- DEMO SECTION -->
-  <section class="pb-16 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
-        <div class="grid lg:grid-cols-2">
+<!-- DEMO SECTION -->
+<section class="pb-16 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
+      <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
 
-          <!-- LEFT IMAGE -->
-          <div class="bg-slate-50 p-10 lg:border-r-4 border-slate-950">
-            <p class="text-xs tracking-[0.3em] uppercase font-black text-slate-500 mb-6">
-              Real example analysis
-            </p>
+        <!-- LEFT: REAL EXAMPLE -->
+        <div class="bg-slate-50 p-10 lg:border-r-4 border-slate-950">
+          <p class="text-xs tracking-[0.3em] uppercase font-black text-slate-500 mb-6">
+            Real example analysis
+          </p>
 
-            <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
-              <img src="images/brand-mirror-demo-1.jpg"
-                   alt="Brand Mirror overlay example"
-                   class="w-full h-auto max-h-[650px] object-contain block"
-                   loading="lazy">
-            </div>
+          <div class="border-4 border-slate-950 rounded-sm overflow-hidden bg-white p-4">
+            <img
+              src="assets/demo1.jpg"
+              alt="Brand Mirror overlay example"
+              class="w-full h-auto block"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
-          <!-- RIGHT IMAGE -->
-          <div class="bg-white p-10">
-            <p class="text-xs tracking-[0.3em] uppercase font-black text-primary mb-6">
-              What you get
+          <p class="mt-6 text-sm text-slate-500 leading-relaxed max-w-prose">
+            Brand Mirror overlays your homepage and reveals what your design is signaling — instantly.
+          </p>
+        </div>
+
+        <!-- RIGHT: WHAT YOU GET -->
+        <div class="bg-white p-10">
+          <p class="text-xs tracking-[0.3em] uppercase font-black text-primary mb-6">
+            What you get
+          </p>
+
+          <!-- Signal Cards -->
+          <div class="space-y-4">
+
+            <!-- Trait Card -->
+            <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
+              <div class="inline-flex items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-emerald-400/15 text-emerald-300 border border-emerald-400/20">
+                  Strong
+                </span>
+              </div>
+              <div class="text-xl font-black tracking-tight">
+                Exclusive
+              </div>
+              <div class="mt-2 text-sm text-slate-300 leading-relaxed">
+                Premium cues land fast. Visual identity feels deliberate.
+              </div>
+            </div>
+
+            <!-- Improve Card -->
+            <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
+              <div class="inline-flex items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-amber-400/15 text-amber-300 border border-amber-400/20">
+                  Improve
+                </span>
+              </div>
+              <div class="text-sm leading-relaxed text-slate-300">
+                Only <span class="font-black text-white">31 words</span> on the homepage despite
+                <span class="font-black text-white">11 clickable elements</span> — creating clutter and choice paralysis.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bullets -->
+          <div class="mt-8 border-t border-slate-100 pt-6">
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>• Clear vibe score</li>
+              <li>• Brand perception traits</li>
+              <li>• “What it signals” summary</li>
+              <li>• Actionable improvement cues</li>
+            </ul>
+          </div>
+
+          <!-- Microcopy -->
+          <div class="mt-8">
+            <p class="text-xs tracking-[0.2em] uppercase text-slate-400">
+              Works on Chrome. Takes 10 seconds.
             </p>
+            <p class="mt-3 text-xs tracking-[0.2em] uppercase text-slate-400">
+              Ready? 
+            </p>
+          </div>
 
-            <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
-              <img src="images/brand-mirror-demo-2.jpg"
-                   alt="Brand Mirror traits and signals"
-                   class="w-full h-auto max-h-[650px] object-contain block"
-                   loading="lazy">
-            </div>
+        </div>
 
-            <div class="mt-8 space-y-3 text-sm text-slate-600">
-              <p>• Clear vibe score</p>
-              <p>• Brand perception traits</p>
-              <p>• “What it signals” summary</p>
-              <p>• Actionable improvement cues</p>
-            </div>
-
-            <div class="mt-10 border-t pt-8">
-              <p class="text-xs tracking-[0.2em] uppercase text-slate-400 mb-4">
-                Works on Chrome. Takes 10 seconds.
-              </p>
-              </a>
-            </div>
+      </div>
+    </div>
+  </div>
+</section>
 
           </div>
 
@@ -185,7 +232,8 @@
 
       <button id="mainBtn"
               disabled
-              class="w-full mt-8 bg-gray-300 text-white font-black text-sm tracking-[0.2em] py-6 uppercase cursor-not-allowed transition">
+              class="w-full mt-8 bg-gray-300 text-white font-black text-sm tracking-[0.2em] py-6 uppercase cursor-not-allowed transition"
+              type="button">
         Get My Brand Mirror
       </button>
 
