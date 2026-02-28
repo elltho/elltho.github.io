@@ -14,10 +14,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work | ELLEN THORELL©</title>
+
+  <!-- keep your shared stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ cases.html-only polish (won't affect other pages) -->
+  <style>
+    /* Scope everything to this page only */
+    body.cases-page main.page-wrap{
+      padding: 10vh 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Fix: testimonial boxes had no styling */
+    body.cases-page .testimonial-box{
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 22px;
+      padding: 2rem;
+      background: #fff;
+    }
+
+    /* Cleaner hover lift ONLY on cases page */
+    body.cases-page a.buddy-box.buddy-link{
+      transition: transform .15s ease, box-shadow .15s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    body.cases-page a.buddy-box.buddy-link:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    /* Make the arrow feel more designed */
+    body.cases-page .buddy-arrow{
+      transition: transform .15s ease, box-shadow .15s ease;
+      user-select: none;
+    }
+    body.cases-page .buddy-arrow:hover{
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    /* Featured chip (used for your tools at top) */
+    body.cases-page .featured-kicker{
+      display: inline-block;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.18);
+      font-family: monospace;
+      font-size: 0.7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    /* Optional: more curated previews ONLY on cases page.
+       If you prefer your old look, delete this block. */
+    body.cases-page .buddy-track img{
+      object-fit: cover;
+      padding: 0;
+    }
+
+    /* Slightly improve long descriptions (readability) */
+    body.cases-page .buddy-desc{
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+  </style>
 </head>
 
-<body>
+<body class="cases-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGJS6PKM"
@@ -30,19 +99,19 @@
       <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
     </div>
     <div class="nav-links">
-      <a href="cases.html">Work</a> 
+      <a href="cases.html">Work</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
   </nav>
 
-  <main style="padding: 10vh 3rem; max-width: 1400px; margin: 0 auto;">
+  <main class="page-wrap">
     <h1 style="font-size: 5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 4rem;">SELECTED<br>CASES.</h1>
 
     <!-- GRID -->
     <div class="work-grid">
 
-      <!-- DEMAND RADAR (now a normal card) -->
+      <!-- DEMAND RADAR -->
       <a href="trends.html" class="buddy-box buddy-link">
         <div class="buddy-slider-area" style="background:#f4f4f4;">
           <div class="buddy-track" id="demandradar-slider">
@@ -52,6 +121,7 @@
         </div>
 
         <div class="buddy-text-area">
+          <div class="featured-kicker">Featured tool</div>
           <h3 class="buddy-title">DEMAND RADAR</h3>
           <p class="buddy-meta">Growth Tool • Google Trends API • Demand Intelligence</p>
           <p class="buddy-desc">
@@ -71,6 +141,7 @@
         </div>
 
         <div class="buddy-text-area">
+          <div class="featured-kicker">Featured tool</div>
           <h3 class="buddy-title">BRAND MIRROR</h3>
           <p class="buddy-meta">Chrome Extension • AI • Positioning & CRO Signals</p>
           <p class="buddy-desc">
@@ -80,7 +151,7 @@
         </div>
       </a>
 
-      <!-- EXISTING CARDS (unchanged) -->
+      <!-- BUDDYPRO -->
       <div class="buddy-box">
         <div class="buddy-slider-area">
           <div class="buddy-track" id="buddypro-slider">
@@ -102,6 +173,7 @@
         </div>
       </div>
 
+      <!-- UNDER YOUR SKIN -->
       <div class="buddy-box">
         <div class="buddy-slider-area" style="background: #f1e48e;">
           <div class="buddy-track" id="uys-slider">
@@ -120,6 +192,7 @@
         </div>
       </div>
 
+      <!-- GEMMA -->
       <div class="buddy-box">
         <div class="buddy-slider-area" style="background: #f4f4f4;">
           <div class="buddy-track" id="gemma-slider">
@@ -138,6 +211,7 @@
         </div>
       </div>
 
+      <!-- STADIUM -->
       <div class="buddy-box">
         <div class="buddy-slider-area" style="background: #FF6B00;">
           <div class="buddy-track" id="stadium-slider">
@@ -156,6 +230,7 @@
         </div>
       </div>
 
+      <!-- AKADEMIBOKHANDELN -->
       <div class="buddy-box">
         <div class="buddy-slider-area" style="background: #f4f4f4;">
           <div class="buddy-track" id="akademibokhandeln-slider">
@@ -174,6 +249,7 @@
         </div>
       </div>
 
+      <!-- DRYPOPS -->
       <div class="buddy-box">
         <div class="buddy-slider-area" style="background: #F4E0E0;">
           <div class="buddy-track" id="strawberry-slider">
