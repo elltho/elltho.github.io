@@ -585,14 +585,58 @@ main:has(.work-grid) {
     font-size: 2.6rem;
   }
 }
-/* ===== CASES PAGE WIDTH OVERRIDE (SAFE) ===== */
+/* =========================
+   CASES PAGE ONLY WHITESPACE
+   (safe: only applies when body has class="cases-page")
+   ========================= */
 
-body.cases-page main {
-    max-width: 1100px;
-    margin: 0 auto;
+/* Make BOTH sections align and have more side whitespace */
+body.cases-page main.page-wrap,
+body.cases-page .testimonial-section{
+  max-width: 1100px !important;     /* try 1000px for even more whitespace */
+  margin: 0 auto !important;
+  padding-left: 4.5rem !important;  /* more whitespace on sides */
+  padding-right: 4.5rem !important;
 }
 
-body.cases-page .testimonial-section {
-    max-width: 1100px;
-    margin: 0 auto;
+/* Keep the same vertical rhythm */
+body.cases-page main.page-wrap{
+  padding-top: 10vh !important;
+  padding-bottom: 4vh !important;
+}
+
+body.cases-page .testimonial-section{
+  padding-top: 8vh !important;
+  padding-bottom: 10vh !important;
+}
+
+/* 3 cards per row on desktop */
+body.cases-page .work-grid{
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 48px !important;
+}
+
+/* Tablet */
+@media (max-width: 1000px){
+  body.cases-page .work-grid{
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px){
+  body.cases-page main.page-wrap,
+  body.cases-page .testimonial-section{
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  body.cases-page .work-grid{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Fix zoomed images (keep contain) */
+body.cases-page .buddy-track img{
+  object-fit: contain !important;
 }
