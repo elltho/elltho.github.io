@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <script>
@@ -38,14 +36,63 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+
     .text-huge{
       line-height: 0.9;
       letter-spacing: -0.04em;
+    }
+
+    /* Scoped ONLY to this page */
+    #brandMirrorPage{
+      --bmBarH: 95px;
+      padding-top: var(--bmBarH);
+    }
+
+    @media (max-width: 640px){
+      #brandMirrorPage{ --bmBarH: 150px; }
     }
   </style>
 </head>
 
 <body class="bg-white text-slate-900">
+
+<div id="brandMirrorPage">
+
+  <!-- STICKY AUDIT BAR -->
+  <div class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b-4 border-slate-950">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+
+      <div class="leading-tight">
+        <div class="text-sm md:text-base font-black uppercase">
+          YOUR HOMEPAGE IS SIGNALING SOMETHING.
+        </div>
+        <div class="text-sm md:text-base font-black italic text-primary uppercase">
+          IS IT COSTING YOU CONVERSIONS?
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 sm:items-center w-full lg:w-auto">
+        <input
+          id="stickyEmail"
+          type="email"
+          placeholder="NAME@YOURBRAND.COM"
+          required
+          class="w-full sm:w-[320px] border-2 border-slate-200 focus:border-primary px-4 py-3 text-sm font-black uppercase placeholder:text-slate-300 outline-none bg-white"
+        />
+        <button
+          id="stickyBtn"
+          disabled
+          class="w-full sm:w-auto bg-gray-300 text-white font-black text-xs tracking-[0.2em] px-6 py-4 uppercase cursor-not-allowed transition"
+        >
+          Get My Brand Mirror
+        </button>
+        <span class="text-[10px] tracking-[0.2em] uppercase text-slate-400 text-center sm:text-left">
+          Works on Chrome. Takes 30 seconds.
+        </span>
+      </div>
+
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -60,7 +107,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="pt-16 pb-12 px-6">
+  <section class="pt-12 pb-12 px-6">
     <div class="max-w-5xl mx-auto text-center">
       <h1 class="text-huge text-6xl md:text-8xl font-black mb-8">
         HOW DOES YOUR <br />
@@ -68,82 +115,112 @@
       </h1>
       <p class="text-slate-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
         Instantly analyze what your homepage actually signals.
-In 10 seconds, see if your brand feels premium, confusing, generic — or conversion-ready.
+        In 10 seconds, see if your brand feels premium, confusing, generic — or conversion-ready.
       </p>
     </div>
   </section>
 
-  <!-- EMAIL SECTION -->
-  <section class="py-16 px-6">
+  <!-- DEMO SECTION -->
+  <section class="pb-16 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 border-4 border-slate-950 overflow-hidden rounded-sm">
+      <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
+        <div class="grid lg:grid-cols-2">
 
-        <!-- PURPLE SIDE -->
-        <div class="bg-[#d8c5e2] p-16 flex items-center justify-center lg:border-r-4 border-slate-950">
-          <h2 class="text-5xl md:text-7xl font-black leading-[0.9] text-slate-950 uppercase italic tracking-tighter">
-            Get the<br />
-            <span class="text-primary not-italic">Extension.</span>
-          </h2>
-        </div>
+          <!-- LEFT IMAGE -->
+          <div class="bg-slate-50 p-10 lg:border-r-4 border-slate-950">
+            <p class="text-xs tracking-[0.3em] uppercase font-black text-slate-500 mb-6">
+              Real example analysis
+            </p>
 
-        <!-- WHITE SIDE -->
-        <div class="bg-white p-16 flex flex-col justify-center">
-          <span class="text-primary font-black text-xs tracking-[0.3em] uppercase mb-12 block">
-            Limited Early Access
-          </span>
+            <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
+              <img src="images/brand-mirror-demo-1.png"
+                   alt="Brand Mirror overlay example"
+                   class="w-full h-auto max-h-[650px] object-contain block"
+                   loading="lazy">
+            </div>
+          </div>
 
-          <div class="space-y-8">
+          <!-- RIGHT IMAGE -->
+          <div class="bg-white p-10">
+            <p class="text-xs tracking-[0.3em] uppercase font-black text-primary mb-6">
+              What you get
+            </p>
 
-            <input
-              id="emailInput"
-              class="w-full border-b-2 border-slate-200 focus:border-primary px-0 py-4 text-2xl font-black text-slate-900 placeholder:text-slate-300 bg-transparent uppercase outline-none"
-              placeholder="NAME@YOURBRAND.COM"
-              type="email"
-              required
-            />
+            <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
+              <img src="images/brand-mirror-demo-2.png"
+                   alt="Brand Mirror traits and signals"
+                   class="w-full h-auto max-h-[650px] object-contain block"
+                   loading="lazy">
+            </div>
 
-            <button
-              id="downloadBtn"
-              disabled
-              class="w-full bg-gray-300 text-white font-black text-sm tracking-[0.2em] py-6 uppercase transition-colors cursor-not-allowed"
-              type="button"
-            >
-              Download the extension
-            </button>
+            <div class="mt-8 space-y-3 text-sm text-slate-600">
+              <p>• Clear vibe score</p>
+              <p>• Brand perception traits</p>
+              <p>• “What it signals” summary</p>
+              <p>• Actionable improvement cues</p>
+            </div>
+
+            <div class="mt-10 border-t pt-8">
+              <p class="text-xs tracking-[0.2em] uppercase text-slate-400 mb-4">
+                Works on Chrome. Takes 30 seconds.
+              </p>
+              </a>
+            </div>
 
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- DOWNLOAD SECTION -->
+  <section id="download" class="py-16 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <input id="mainEmail"
+             type="email"
+             required
+             placeholder="NAME@YOURBRAND.COM"
+             class="w-full border-b-2 border-slate-200 focus:border-primary px-0 py-4 text-2xl font-black uppercase placeholder:text-slate-300 outline-none">
+
+      <button id="mainBtn"
+              disabled
+              class="w-full mt-8 bg-gray-300 text-white font-black text-sm tracking-[0.2em] py-6 uppercase cursor-not-allowed transition">
+        Get My Brand Mirror
+      </button>
+
+      <p class="mt-4 text-xs tracking-[0.2em] uppercase text-slate-400">
+        Works on Chrome. Takes 30 seconds.
+      </p>
+    </div>
+  </section>
+
   <!-- FOOTER -->
-  <footer style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
+  <footer style="padding:60px 40px;text-align:center;font-family:monospace;font-size:0.8rem;border-top:1px solid rgba(0,0,0,0.1);">
     ELLEN THORELL© 2026
   </footer>
 
-  <!-- SCRIPT -->
-  <script>
-    const emailInput = document.getElementById("emailInput");
-    const downloadBtn = document.getElementById("downloadBtn");
+</div>
 
-    // Enable button only when valid email
-    emailInput.addEventListener("input", function () {
-      if (emailInput.checkValidity()) {
-        downloadBtn.disabled = false;
-        downloadBtn.classList.remove("bg-gray-300","cursor-not-allowed");
-        downloadBtn.classList.add("bg-primary","hover:bg-blue-700","cursor-pointer");
+<script>
+  function wire(inputId, buttonId){
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(buttonId);
+
+    input.addEventListener("input", function(){
+      if(input.checkValidity()){
+        btn.disabled = false;
+        btn.classList.remove("bg-gray-300","cursor-not-allowed");
+        btn.classList.add("bg-primary","hover:bg-blue-700","cursor-pointer");
       } else {
-        downloadBtn.disabled = true;
-        downloadBtn.classList.remove("bg-primary","hover:bg-blue-700","cursor-pointer");
-        downloadBtn.classList.add("bg-gray-300","cursor-not-allowed");
+        btn.disabled = true;
+        btn.classList.add("bg-gray-300","cursor-not-allowed");
+        btn.classList.remove("bg-primary","hover:bg-blue-700","cursor-pointer");
       }
     });
 
-    // Download logic
-    downloadBtn.addEventListener("click", function () {
-      if (!emailInput.checkValidity()) return;
+    btn.addEventListener("click", function(){
+      if(!input.checkValidity()) return;
 
       const a = document.createElement("a");
       a.href = "downloads/brand-mirror-extension.zip";
@@ -152,7 +229,11 @@ In 10 seconds, see if your brand feels premium, confusing, generic — or conver
       a.click();
       a.remove();
     });
-  </script>
+  }
+
+  wire("stickyEmail","stickyBtn");
+  wire("mainEmail","mainBtn");
+</script>
 
 </body>
 </html>
