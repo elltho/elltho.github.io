@@ -80,6 +80,53 @@
       transform: none !important;
       box-shadow: none !important;
     }
+
+    /* ===== COVER TEXT (Brand Mirror + Demand Radar) ===== */
+    body.cases-page .buddy-slider-area.cover{
+      position: relative;
+      display: flex;
+      align-items: flex-start;      /* key: same alignment for both */
+      justify-content: flex-start;  /* key: same alignment for both */
+      padding: 48px 40px;           /* consistent placement */
+    }
+
+    body.cases-page .cover-text{
+      max-width: 20ch;
+    }
+
+    body.cases-page .cover-kicker{
+      font-family: monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 18px;
+    }
+
+    body.cases-page .cover-headline{
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    body.cases-page .cover-sub{
+      font-size: 1rem;
+      line-height: 1.35;
+      opacity: 0.9;
+    }
+
+    body.cases-page .brandmirror-cover{
+      background: #1E2A44; /* deep ink blue */
+      color: #fff;
+    }
+
+    body.cases-page .demandradar-cover{
+      background: #F3F1ED; /* warm stone */
+      color: #000;
+    }
   </style>
 </head>
 
@@ -111,13 +158,14 @@
 
       <div class="work-grid">
 
-         <!-- BRAND MIRROR -->
+        <!-- BRAND MIRROR (UPDATED: text cover + no arrow) -->
         <a href="brand-mirror.html" class="buddy-box buddy-link">
-          <div class="buddy-slider-area" style="background:#1E2A44;;">
-            <div class="buddy-track" id="brandmirror-slider">
-              <img src="assets/brand-mirror-1.jpg" alt="Brand Mirror preview 1">
+          <div class="buddy-slider-area cover brandmirror-cover">
+            <div class="cover-text">
+              <p class="cover-kicker">FREE TOOL</p>
+              <h3 class="cover-headline">YOUR HOMEPAGE IS SIGNALING SOMETHING.</h3>
+              <p class="cover-sub">Is it costing you conversions?</p>
             </div>
-            <div class="buddy-arrow" onclick="scrollSlider('brandmirror-slider'); event.preventDefault();">→</div>
           </div>
 
           <div class="buddy-text-area">
@@ -130,13 +178,14 @@
           </div>
         </a>
 
-        <!-- DEMAND RADAR -->
+        <!-- DEMAND RADAR (UPDATED: text cover + no arrow) -->
         <a href="trends.html" class="buddy-box buddy-link">
-          <div class="buddy-slider-area" style="background:#f4f4f4;">
-            <div class="buddy-track" id="demandradar-slider">
-              <img src="assets/demandradar-1.jpg" alt="Demand Radar preview 1">
+          <div class="buddy-slider-area cover demandradar-cover">
+            <div class="cover-text">
+              <p class="cover-kicker">GROWTH TOOL</p>
+              <h3 class="cover-headline">SPOT RISING DEMAND.</h3>
+              <p class="cover-sub">Trends intelligence for early growth.</p>
             </div>
-            <div class="buddy-arrow" onclick="scrollSlider('demandradar-slider'); event.preventDefault();">→</div>
           </div>
 
           <div class="buddy-text-area">
