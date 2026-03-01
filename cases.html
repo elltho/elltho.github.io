@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
   <!-- Google Tag Manager -->
   <script>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -138,7 +143,7 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <nav class="navbar">
+  <nav class="navbar" id="nav">
     <div class="logo">
       <a href="index.html" style="text-decoration:none; color:inherit;">ELLEN THORELL©</a>
     </div>
@@ -150,7 +155,7 @@
   </nav>
 
   <!-- SELECTED CASES -->
-  <main class="page-wrap">
+  <main class="page-wrap" id="cases">
     <div class="cases-container">
       <h1 style="font-size: 5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 4rem;">
         SELECTED<br>CASES.
@@ -158,7 +163,7 @@
 
       <div class="work-grid">
 
-        <!-- BRAND MIRROR (UPDATED: text cover + no arrow) -->
+        <!-- BRAND MIRROR -->
         <a href="brand-mirror.html" class="buddy-box buddy-link">
           <div class="buddy-slider-area cover brandmirror-cover">
             <div class="cover-text">
@@ -178,7 +183,7 @@
           </div>
         </a>
 
-        <!-- DEMAND RADAR (UPDATED: text cover + no arrow) -->
+        <!-- DEMAND RADAR -->
         <a href="trends.html" class="buddy-box buddy-link">
           <div class="buddy-slider-area cover demandradar-cover">
             <div class="cover-text">
@@ -317,7 +322,7 @@
   </main>
 
   <!-- EXPERT FEEDBACK -->
-  <section class="testimonial-section">
+  <section class="testimonial-section" id="feedback">
     <div class="cases-container">
       <h2 class="big-header">EXPERT<br>FEEDBACK.</h2>
 
@@ -343,10 +348,87 @@
     </div>
   </section>
 
-  <footer style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
+  <footer id="footer" style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
     ELLEN THORELL© 2026
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Link click tracking -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+
+      function cleanText(str) {
+        return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+      }
+
+      function getLinkText(a) {
+        return cleanText(a.getAttribute('aria-label')) ||
+               cleanText(a.getAttribute('title')) ||
+               cleanText(a.textContent) ||
+               cleanText(a.querySelector && a.querySelector('img') && a.querySelector('img').getAttribute('alt')) ||
+               'unknown';
+      }
+
+      function safeUrl(href) {
+        try { return new URL(href, window.location.href).href; }
+        catch { return ''; }
+      }
+
+      function isOutbound(absUrl) {
+        try { return new URL(absUrl).origin !== window.location.origin; }
+        catch { return false; }
+      }
+
+      function getSection(a) {
+        var el = a.closest('#nav, #cases, #feedback, #footer');
+        if (el && el.id) return el.id;
+
+        var footer = a.closest('footer');
+        if (footer) return 'footer';
+
+        var section = a.closest('section');
+        if (section && section.id) return section.id;
+
+        var main = a.closest('main');
+        if (main && main.id) return main.id;
+
+        return 'unknown';
+      }
+
+      function getLinkType(a, absUrl) {
+        var href = (a.getAttribute('href') || '').toLowerCase();
+
+        if (a.classList.contains('cta')) return 'cta';
+        if (a.closest('.navbar')) return 'nav';
+        if (href.startsWith('mailto:')) return 'email';
+        if (href.startsWith('tel:')) return 'phone';
+        if (isOutbound(absUrl)) return 'outbound';
+        return 'regular';
+      }
+
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        var absUrl = safeUrl(href);
+        if (!absUrl) return;
+
+        window.dataLayer.push({
+          event: 'link_click',
+          link_text: getLinkText(link),
+          link_url: absUrl,
+          link_type: getLinkType(link, absUrl),
+          section: getSection(link),
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
+      }, true);
+    })();
+  </script>
 </body>
 </html>

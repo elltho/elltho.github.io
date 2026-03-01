@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
   <!-- Google Tag Manager -->
   <script>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,11 +16,12 @@
   </script>
   <!-- End Google Tag Manager -->
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | ELLEN THORELL©</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | ELLEN THORELL©</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -24,127 +30,207 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-    <nav class="navbar">
+  <nav class="navbar" id="nav">
     <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
+      <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
     </div>
     <div class="nav-links">
-        <a href="cases.html">Work</a> 
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+      <a href="cases.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
-</nav>
+  </nav>
 
-    <main class="about-cv-container">
-        
-        <section class="about-intro">
-            <h1 class="big-header">ABOUT.</h1>
-            <p class="intro-text">
-                With a deep understanding of how platform algorithms and mechanics reshape modern marketing, I identify and drive growth through creative strategy, measurement and continuous optimization.
-            </p>
-        </section>
+  <main class="about-cv-container" id="about">
 
-        <section class="cv-grid">
-            <aside class="cv-sidebar">
-                <div class="sidebar-block">
-                    <h3>GROWTH TOOLKIT</h3>
-                    <p><strong>Paid Media:</strong> Meta, Google & TikTok</p>
-                    <p><strong>Analytics:</strong> GA4, GTM, Looker Studio</p>
-                    <p><strong>Design:</strong> Adobe CC, Canva, Affinity</p>
-                    <p><strong>Automation:</strong> Apsis</p>
-                </div>
+    <section class="about-intro" id="intro">
+      <h1 class="big-header">ABOUT.</h1>
+      <p class="intro-text">
+        With a deep understanding of how platform algorithms and mechanics reshape modern marketing, I identify and drive growth through creative strategy, measurement and continuous optimization.
+      </p>
+    </section>
 
-                <div class="sidebar-block">
-                    <h3>ENGAGEMENT</h3>
-                    <p><strong>Sprints n' Pints Run Club</strong><br>
-                    Leading a women's running club in Stockholm with 1,000+ members through strategic brand partnerships and events.</p>
-                </div>
-            </aside>
+    <section class="cv-grid" id="cv">
+      <aside class="cv-sidebar">
+        <div class="sidebar-block">
+          <h3>GROWTH TOOLKIT</h3>
+          <p><strong>Paid Media:</strong> Meta, Google & TikTok</p>
+          <p><strong>Analytics:</strong> GA4, GTM, Looker Studio</p>
+          <p><strong>Design:</strong> Adobe CC, Canva, Affinity</p>
+          <p><strong>Automation:</strong> Apsis</p>
+        </div>
 
-  <div class="cv-main-list">
-    
-    <div class="cv-section">
-        <h2>EXPERIENCE</h2>
-        
-        <div class="cv-entry">
+        <div class="sidebar-block">
+          <h3>ENGAGEMENT</h3>
+          <p><strong>Sprints n' Pints Run Club</strong><br>
+          Leading a women's running club in Stockholm with 1,000+ members through strategic brand partnerships and events.</p>
+        </div>
+      </aside>
+
+      <div class="cv-main-list">
+
+        <div class="cv-section">
+          <h2>EXPERIENCE</h2>
+
+          <div class="cv-entry">
             <span class="year">Spring 2026</span>
             <div class="details">
-                <p class="role">Content Distribution Specialist (Internship)</p>
-                <p class="company">Trickle, Stockholm</p>
+              <p class="role">Content Distribution Specialist (Internship)</p>
+              <p class="company">Trickle, Stockholm</p>
             </div>
-        </div>
+          </div>
 
-        <div class="cv-entry">
+          <div class="cv-entry">
             <span class="year">2025</span>
             <div class="details">
-                <p class="role">Growth Marketer (Project)</p>
-                <p class="company">BuddyPro / Berghs</p>
-                <p class="description">
-                    Led the transition of performance marketing across Meta and Google Ads from a sales-led to product-led acquisition. Turned paid channels into the strongest drivers of user growth and helped drive BuddyPro past its Q4 targets.
-                    <br><small style="opacity: 0.6; display: block; margin-top: 5px;">*Exact figures confidential due to public company regulations.</small>
-                </p>
+              <p class="role">Growth Marketer (Project)</p>
+              <p class="company">BuddyPro / Berghs</p>
+              <p class="description">
+                Led the transition of performance marketing across Meta and Google Ads from a sales-led to product-led acquisition. Turned paid channels into the strongest drivers of user growth and helped drive BuddyPro past its Q4 targets.
+                <br><small style="opacity: 0.6; display: block; margin-top: 5px;">*Exact figures confidential due to public company regulations.</small>
+              </p>
             </div>
-        </div>
+          </div>
 
-        <div class="cv-entry">
+          <div class="cv-entry">
             <span class="year">Jan 2024 – Aug 2025</span>
             <div class="details">
-                <p class="role">Customer Care Officer</p>
-                <p class="company">Efficy, Stockholm</p>
-                <p class="description">
-                    Advised marketing teams on CRM, email marketing, and automation using APSIS. Developed strong expertise in how data-driven flows and automation enhance customer experience (CX).
-                </p>
+              <p class="role">Customer Care Officer</p>
+              <p class="company">Efficy, Stockholm</p>
+              <p class="description">
+                Advised marketing teams on CRM, email marketing, and automation using APSIS. Developed strong expertise in how data-driven flows and automation enhance customer experience (CX).
+              </p>
             </div>
-        </div>
+          </div>
 
-        <div class="cv-entry">
+          <div class="cv-entry">
             <span class="year">Jun 2023 – Sep 2023</span>
             <div class="details">
-                <p class="role">Kommunikatör</p>
-                <p class="company">VA SYD, Malmö</p>
-                <p class="description">
-                    Managed press relations and external communications, securing coverage in industry media. Combined strategic planning with hands-on execution across web content, social media, and SEO to drive visibility, engagement, and traffic growth.
-                </p>
+              <p class="role">Kommunikatör</p>
+              <p class="company">VA SYD, Malmö</p>
+              <p class="description">
+                Managed press relations and external communications, securing coverage in industry media. Combined strategic planning with hands-on execution across web content, social media, and SEO to drive visibility, engagement, and traffic growth.
+              </p>
             </div>
-        </div>
+          </div>
 
-        <div class="cv-entry">
+          <div class="cv-entry">
             <span class="year">Mar 2022 – Aug 2022</span>
             <div class="details">
-                <p class="role">Global Community Manager</p>
-                <p class="company">Oatly, Malmö</p>
-                <p class="description">
-                    Built strategic expertise into how community management strengthens brand and consumer relationships. Represented the brand across social channels and external events, analyzed engagement data, and structured internal knowledge within a global context.
-                </p>
+              <p class="role">Global Community Manager</p>
+              <p class="company">Oatly, Malmö</p>
+              <p class="description">
+                Built strategic expertise into how community management strengthens brand and consumer relationships. Represented the brand across social channels and external events, analyzed engagement data, and structured internal knowledge within a global context.
+              </p>
             </div>
+          </div>
         </div>
-    </div>
 
-    <div class="cv-section">
-        <h2>EDUCATION</h2>
-        <div class="cv-entry">
+        <div class="cv-section">
+          <h2>EDUCATION</h2>
+          <div class="cv-entry">
             <span class="year">2025 – 2026</span>
             <div class="details">
-                <p class="role">Growth Marketing</p>
-                <p class="company">Berghs School of Communication</p>
+              <p class="role">Growth Marketing</p>
+              <p class="company">Berghs School of Communication</p>
             </div>
-        </div>
-        <div class="cv-entry">
+          </div>
+          <div class="cv-entry">
             <span class="year">2020 – 2023</span>
             <div class="details">
-                <p class="role">Bachelor's Degree in Strategic Communication</p>
-                <p class="company">Lund University</p>
-                <p class="description">Exchange Semester: ESSCA School of Management, Paris | Fall 2022</p>
+              <p class="role">Bachelor's Degree in Strategic Communication</p>
+              <p class="company">Lund University</p>
+              <p class="description">Exchange Semester: ESSCA School of Management, Paris | Fall 2022</p>
             </div>
+          </div>
         </div>
-    </div>
 
-</div>
-    </main>
+      </div>
+    </section>
 
-    <footer style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
-        ELLEN THORELL© 2026
-    </footer>
-<script src="script.js"></script>
+  </main>
+
+  <footer id="footer" style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
+    ELLEN THORELL© 2026
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Link click tracking -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+
+      function cleanText(str) {
+        return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+      }
+
+      function getLinkText(a) {
+        return cleanText(a.getAttribute('aria-label')) ||
+               cleanText(a.getAttribute('title')) ||
+               cleanText(a.textContent) ||
+               cleanText(a.querySelector && a.querySelector('img') && a.querySelector('img').getAttribute('alt')) ||
+               'unknown';
+      }
+
+      function safeUrl(href) {
+        try { return new URL(href, window.location.href).href; }
+        catch { return ''; }
+      }
+
+      function isOutbound(absUrl) {
+        try { return new URL(absUrl).origin !== window.location.origin; }
+        catch { return false; }
+      }
+
+      function getSection(a) {
+        var el = a.closest('#nav, #intro, #cv, #about, #footer');
+        if (el && el.id) return el.id;
+
+        var footer = a.closest('footer');
+        if (footer) return 'footer';
+
+        var section = a.closest('section');
+        if (section && section.id) return section.id;
+
+        var main = a.closest('main');
+        if (main && main.id) return main.id;
+
+        return 'unknown';
+      }
+
+      function getLinkType(a, absUrl) {
+        var href = (a.getAttribute('href') || '').toLowerCase();
+
+        if (a.classList.contains('cta')) return 'cta';
+        if (a.closest('.navbar')) return 'nav';
+        if (href.startsWith('mailto:')) return 'email';
+        if (href.startsWith('tel:')) return 'phone';
+        if (isOutbound(absUrl)) return 'outbound';
+        return 'regular';
+      }
+
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        var absUrl = safeUrl(href);
+        if (!absUrl) return;
+
+        window.dataLayer.push({
+          event: 'link_click',
+          link_text: getLinkText(link),
+          link_url: absUrl,
+          link_type: getLinkType(link, absUrl),
+          section: getSection(link),
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
+      }, true);
+    })();
+  </script>
 </body>
 </html>

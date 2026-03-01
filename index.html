@@ -1,84 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- Google Tag Manager -->
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id=GTM-PGJS6PKM'+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PGJS6PKM');
-</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elltho | Growth Marketing Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
- <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGJS6PKM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
 
-<nav class="navbar">
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id=GTM-PGJS6PKM'+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGJS6PKM');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elltho | Growth Marketing Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGJS6PKM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav class="navbar" id="nav">
     <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
+      <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
     </div>
     <div class="nav-links">
-        <a href="cases.html">Work</a> 
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+      <a href="cases.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
-</nav>
+  </nav>
 
-    <header class="hero-section">
-        <img src="assets/hero-1.jpg" alt="Portfolio Highlight" class="hero-img" id="hero-img">
-    </header>
-        
-        <section class="grid-container">
-    
+  <header class="hero-section" id="hero">
+    <img src="assets/hero-1.jpg" alt="Portfolio Highlight" class="hero-img" id="hero-img">
+  </header>
+
+  <section class="grid-container" id="cases">
     <div class="card yellow">
-        <h2>Explore my work</h2>
-        <p>A collection of growth cases and creative solutions from my time at Berghs.</p>
-        <a href="cases.html" class="btn">Explore cases</a>
+      <h2>Explore my work</h2>
+      <p>A collection of growth cases and creative solutions from my time at Berghs.</p>
+      <a href="cases.html" class="btn cta">Explore cases</a>
     </div>
 
     <div class="card blue">
-        <h2 class="ultra-bold">CV<br>CV<br>CV</h2>
-        <p>Looking for something new? Here you'll find my background and my full professional track record.</p>
-        <a href="about.html" class="btn" target="_blank">Curious? Click here</a>
+      <h2 class="ultra-bold">CV<br>CV<br>CV</h2>
+      <p>Looking for something new? Here you'll find my background and my full professional track record.</p>
+      <a href="about.html" class="btn cta" target="_blank">Curious? Click here</a>
     </div>
 
     <div class="card purple">
-        <h2>Let's talk!</h2>
-        <p>Growth, strategy, or future opportunities. Reach out below.</p>
-        <a href="contact.html" class="btn">Get in touch</a>
+      <h2>Let's talk!</h2>
+      <p>Growth, strategy, or future opportunities. Reach out below.</p>
+      <a href="contact.html" class="btn cta">Get in touch</a>
     </div>
+  </section>
 
-</section>
-
-<footer style="padding: 40px; text-align: center; font-family: monospace; font-size: 0.8rem;">
+  <footer id="footer" style="padding: 40px; text-align: center; font-family: monospace; font-size: 0.8rem;">
     ELLEN THORELL© 2026
-</footer>
+  </footer>
 
-<script src="script.js"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
+  <script src="script.js"></script>
 
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('a');
-    if (!link) return;
+  <!-- Link click tracking -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
 
-    var href = link.getAttribute('href');
-    if (!href || href === '#') return;
+      function cleanText(str) {
+        return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+      }
 
-    window.dataLayer.push({
-      event: 'link_click',
-      link_text: (link.textContent || '').trim(),
-      link_url: link.href,
-    });
-  });
-</script>
+      function getLinkText(a) {
+        return cleanText(a.getAttribute('aria-label')) ||
+               cleanText(a.getAttribute('title')) ||
+               cleanText(a.textContent) ||
+               cleanText(a.querySelector && a.querySelector('img') && a.querySelector('img').getAttribute('alt')) ||
+               'unknown';
+      }
+
+      function safeUrl(href) {
+        try { return new URL(href, window.location.href).href; }
+        catch { return ''; }
+      }
+
+      function isOutbound(absUrl) {
+        try { return new URL(absUrl).origin !== window.location.origin; }
+        catch { return false; }
+      }
+
+      function getSection(a) {
+        // Prefer explicit IDs for stable reporting
+        var el = a.closest('#nav, #hero, #cases, #footer');
+        if (el && el.id) return el.id;
+
+        // Fallbacks
+        var footer = a.closest('footer');
+        if (footer) return 'footer';
+
+        var section = a.closest('section');
+        if (section && section.id) return section.id;
+        if (section) return 'section';
+
+        return 'unknown';
+      }
+
+      function getLinkType(a, absUrl) {
+        if (a.classList.contains('cta')) return 'cta';
+        if (a.closest('.navbar')) return 'nav';
+        if (isOutbound(absUrl)) return 'outbound';
+        return 'regular';
+      }
+
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        var absUrl = safeUrl(href);
+        if (!absUrl) return;
+
+        window.dataLayer.push({
+          event: 'link_click',
+          link_text: getLinkText(link),
+          link_url: absUrl,
+          link_type: getLinkType(link, absUrl),
+          section: getSection(link),
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
+      }, true);
+    })();
+  </script>
 </body>
 </html>

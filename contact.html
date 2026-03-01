@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
   <!-- Google Tag Manager -->
   <script>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,11 +16,12 @@
   </script>
   <!-- End Google Tag Manager -->
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | ELLEN THORELL©</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | ELLEN THORELL©</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -24,46 +30,122 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-    <nav class="navbar">
+  <nav class="navbar" id="nav">
     <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
+      <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
     </div>
     <div class="nav-links">
-        <a href="cases.html">Work</a> 
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+      <a href="cases.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
-</nav>
+  </nav>
 
-    <main class="contact-wrapper">
-        <div class="contact-content">
-            <h1 class="big-header">
-                LET'S GROW<br>TOGETHER.
-            </h1>
-            
-            <p class="contact-sub">
-                I’m always looking for new challenges—let's grab a coffee.
-            </p>
+  <main class="contact-wrapper" id="contact">
+    <div class="contact-content">
+      <h1 class="big-header">
+        LET'S GROW<br>TOGETHER.
+      </h1>
 
-            <div class="contact-primary">
-                <a href="mailto:ellen.thorell@gmail.com" class="email-link">
-                    ellen.thorell@gmail.com
-                </a>
-                <p class="phone-number">+46 738 38 78 12</p>
-            </div>
-            
-            <div class="contact-socials">
-                <a href="https://www.linkedin.com/in/ellen-thorell-645a70173/" target="_blank">→ LinkedIn</a>
-                <a href="https://www.instagram.com/ellen.thorell/" target="_blank">→ Instagram</a>
-                <a href="https://www.tiktok.com/@ellenthorell" target="_blank">→ TikTok</a>
-            </div>
-        </div>
+      <p class="contact-sub">
+        I’m always looking for new challenges—let's grab a coffee.
+      </p>
 
-        <div class="profile-container">
-            <img src="assets/ellen.jpg" alt="Ellen Thorell" class="profile-pic">
-        </div>
-    </main>
+      <div class="contact-primary">
+        <a href="mailto:ellen.thorell@gmail.com" class="email-link">
+          ellen.thorell@gmail.com
+        </a>
+        <p class="phone-number">+46 738 38 78 12</p>
+      </div>
 
-    <footer style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
-        ELLEN THORELL© 2026
-    </footer>
+      <div class="contact-socials">
+        <a href="https://www.linkedin.com/in/ellen-thorell-645a70173/" target="_blank" rel="noopener">→ LinkedIn</a>
+        <a href="https://www.instagram.com/ellen.thorell/" target="_blank" rel="noopener">→ Instagram</a>
+        <a href="https://www.tiktok.com/@ellenthorell" target="_blank" rel="noopener">→ TikTok</a>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <img src="assets/ellen.jpg" alt="Ellen Thorell" class="profile-pic">
+    </div>
+  </main>
+
+  <footer id="footer" style="padding: 60px 40px; text-align: center; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 10vh;">
+    ELLEN THORELL© 2026
+  </footer>
+
+  <!-- Link click tracking -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+
+      function cleanText(str) {
+        return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+      }
+
+      function getLinkText(a) {
+        return cleanText(a.getAttribute('aria-label')) ||
+               cleanText(a.getAttribute('title')) ||
+               cleanText(a.textContent) ||
+               'unknown';
+      }
+
+      function safeUrl(href) {
+        try { return new URL(href, window.location.href).href; }
+        catch { return ''; }
+      }
+
+      function isOutbound(absUrl) {
+        try { return new URL(absUrl).origin !== window.location.origin; }
+        catch { return false; }
+      }
+
+      function getSection(a) {
+        var el = a.closest('#nav, #hero, #cases, #contact, #footer');
+        if (el && el.id) return el.id;
+
+        var footer = a.closest('footer');
+        if (footer) return 'footer';
+
+        var main = a.closest('main');
+        if (main && main.id) return main.id;
+
+        return 'unknown';
+      }
+
+      function getLinkType(a, absUrl) {
+        var href = (a.getAttribute('href') || '').toLowerCase();
+
+        if (a.classList.contains('cta')) return 'cta';
+        if (a.closest('.navbar')) return 'nav';
+        if (href.startsWith('mailto:')) return 'email';
+        if (href.startsWith('tel:')) return 'phone';
+        if (isOutbound(absUrl)) return 'outbound';
+        return 'regular';
+      }
+
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        var absUrl = safeUrl(href);
+        if (!absUrl) return;
+
+        window.dataLayer.push({
+          event: 'link_click',
+          link_text: getLinkText(link),
+          link_url: absUrl,
+          link_type: getLinkType(link, absUrl),
+          section: getSection(link),
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
+      }, true);
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -9,6 +14,7 @@
     'https://www.googletagmanager.com/gtm.js?id=GTM-PGJS6PKM'+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PGJS6PKM');
   </script>
+  <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,7 +65,7 @@
 <div id="brandMirrorPage">
 
   <!-- STICKY AUDIT BAR -->
-  <div class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b-4 border-slate-950">
+  <div class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b-4 border-slate-950" id="hero">
     <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
 
       <div class="leading-tight">
@@ -96,7 +102,7 @@
   </div>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
+  <nav class="navbar" id="nav">
     <div class="logo">
       <a href="index.html" style="text-decoration: none; color: inherit;">ELLEN THORELL©</a>
     </div>
@@ -121,98 +127,84 @@
     </div>
   </section>
 
-<!-- DEMO SECTION -->
-<section class="pb-16 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
-      <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
+  <!-- DEMO SECTION -->
+  <section class="pb-16 px-6" id="demo">
+    <div class="max-w-7xl mx-auto">
+      <div class="border-4 border-slate-950 rounded-sm overflow-hidden">
+        <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
 
-        <!-- LEFT: REAL EXAMPLE -->
-        <div class="bg-slate-50 p-10 lg:border-r-4 border-slate-950">
-          <p class="text-xs tracking-[0.3em] uppercase font-black text-slate-500 mb-6">
-            Real example analysis
-          </p>
-
-          <div class="border-4 border-slate-950 rounded-sm overflow-hidden bg-white p-4">
-            <img
-              src="assets/demo1.jpg"
-              alt="Brand Mirror overlay example"
-              class="w-full h-auto block"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <p class="mt-6 text-sm text-slate-500 leading-relaxed max-w-prose">
-            Brand Mirror overlays your homepage and reveals what your design is signaling — instantly.
-          </p>
-        </div>
-
-        <!-- RIGHT: WHAT YOU GET -->
-        <div class="bg-white p-10">
-          <p class="text-xs tracking-[0.3em] uppercase font-black text-primary mb-6">
-            What you get
-          </p>
-
-          <!-- Signal Cards -->
-          <div class="space-y-4">
-
-            <!-- Trait Card -->
-            <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-emerald-400/15 text-emerald-300 border border-emerald-400/20">
-                  Strong
-                </span>
-              </div>
-              <div class="text-xl font-black tracking-tight">
-                Exclusive
-              </div>
-              <div class="mt-2 text-sm text-slate-300 leading-relaxed">
-                Premium cues land fast. Visual identity feels deliberate.
-              </div>
-            </div>
-
-            <!-- Improve Card -->
-            <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-amber-400/15 text-amber-300 border border-amber-400/20">
-                  Improve
-                </span>
-              </div>
-              <div class="text-sm leading-relaxed text-slate-300">
-                Only <span class="font-black text-white">31 words</span> on the homepage despite
-                <span class="font-black text-white">11 clickable elements</span> — creating clutter and choice paralysis.
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Bullets -->
-          <div class="mt-8 border-t border-slate-100 pt-6">
-            <ul class="space-y-2 text-sm text-slate-600">
-              <li>• Clear vibe score</li>
-              <li>• Brand perception traits</li>
-              <li>• “What it signals” summary</li>
-              <li>• Actionable improvement cues</li>
-            </ul>
-          </div>
-
-          <!-- Microcopy -->
-          <div class="mt-8">
-            <p class="text-xs tracking-[0.2em] uppercase text-slate-400">
-              Works on Chrome. Takes 10 seconds.
+          <!-- LEFT: REAL EXAMPLE -->
+          <div class="bg-slate-50 p-10 lg:border-r-4 border-slate-950">
+            <p class="text-xs tracking-[0.3em] uppercase font-black text-slate-500 mb-6">
+              Real example analysis
             </p>
-            <p class="mt-3 text-xs tracking-[0.2em] uppercase text-slate-400">
-              Ready? 
+
+            <div class="border-4 border-slate-950 rounded-sm overflow-hidden bg-white p-4">
+              <img
+                src="assets/demo1.jpg"
+                alt="Brand Mirror overlay example"
+                class="w-full h-auto block"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <p class="mt-6 text-sm text-slate-500 leading-relaxed max-w-prose">
+              Brand Mirror overlays your homepage and reveals what your design is signaling — instantly.
             </p>
           </div>
 
-        </div>
+          <!-- RIGHT: WHAT YOU GET -->
+          <div class="bg-white p-10">
+            <p class="text-xs tracking-[0.3em] uppercase font-black text-primary mb-6">
+              What you get
+            </p>
 
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="space-y-4">
+              <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
+                <div class="inline-flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-emerald-400/15 text-emerald-300 border border-emerald-400/20">
+                    Strong
+                  </span>
+                </div>
+                <div class="text-xl font-black tracking-tight">
+                  Exclusive
+                </div>
+                <div class="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Premium cues land fast. Visual identity feels deliberate.
+                </div>
+              </div>
+
+              <div class="rounded-2xl p-6 border border-slate-200 bg-slate-950 text-white">
+                <div class="inline-flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full text-xs font-black tracking-[0.2em] uppercase bg-amber-400/15 text-amber-300 border border-amber-400/20">
+                    Improve
+                  </span>
+                </div>
+                <div class="text-sm leading-relaxed text-slate-300">
+                  Only <span class="font-black text-white">31 words</span> on the homepage despite
+                  <span class="font-black text-white">11 clickable elements</span> — creating clutter and choice paralysis.
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 border-t border-slate-100 pt-6">
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li>• Clear vibe score</li>
+                <li>• Brand perception traits</li>
+                <li>• “What it signals” summary</li>
+                <li>• Actionable improvement cues</li>
+              </ul>
+            </div>
+
+            <div class="mt-8">
+              <p class="text-xs tracking-[0.2em] uppercase text-slate-400">
+                Works on Chrome. Takes 10 seconds.
+              </p>
+              <p class="mt-3 text-xs tracking-[0.2em] uppercase text-slate-400">
+                Ready?
+              </p>
+            </div>
 
           </div>
 
@@ -244,22 +236,44 @@
   </section>
 
   <!-- FOOTER -->
-  <footer style="padding:60px 40px;text-align:center;font-family:monospace;font-size:0.8rem;border-top:1px solid rgba(0,0,0,0.1);">
+  <footer id="footer" style="padding:60px 40px;text-align:center;font-family:monospace;font-size:0.8rem;border-top:1px solid rgba(0,0,0,0.1);">
     ELLEN THORELL© 2026
   </footer>
 
 </div>
 
 <script>
-  function wire(inputId, buttonId){
+  // ===== Lead magnet tracking + download wiring =====
+  function pushDL(obj){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(obj);
+  }
+
+  function wire(inputId, buttonId, locationName){
     const input = document.getElementById(inputId);
     const btn = document.getElementById(buttonId);
 
+    let hasFiredValid = false;
+
     input.addEventListener("input", function(){
-      if(input.checkValidity()){
+      const valid = input.checkValidity();
+
+      if(valid){
         btn.disabled = false;
         btn.classList.remove("bg-gray-300","cursor-not-allowed");
         btn.classList.add("bg-primary","hover:bg-blue-700","cursor-pointer");
+
+        // Fire ONCE per page view when email becomes valid
+        if(!hasFiredValid){
+          hasFiredValid = true;
+          pushDL({
+            event: "lead_email_valid",
+            lead_name: "brand_mirror",
+            form_location: locationName,   // "sticky" or "main"
+            page_path: window.location.pathname,
+            page_title: document.title
+          });
+        }
       } else {
         btn.disabled = true;
         btn.classList.add("bg-gray-300","cursor-not-allowed");
@@ -270,6 +284,18 @@
     btn.addEventListener("click", function(){
       if(!input.checkValidity()) return;
 
+      // Track the intent/action (do NOT send the email itself)
+      pushDL({
+        event: "lead_download",
+        lead_name: "brand_mirror",
+        form_location: locationName,
+        asset: "brand_mirror_extension",
+        file: "downloads/brand-mirror-extension.zip",
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+
+      // Trigger download
       const a = document.createElement("a");
       a.href = "downloads/brand-mirror-extension.zip";
       a.download = "brand-mirror-extension.zip";
@@ -279,8 +305,79 @@
     });
   }
 
-  wire("stickyEmail","stickyBtn");
-  wire("mainEmail","mainBtn");
+  wire("stickyEmail","stickyBtn","sticky");
+  wire("mainEmail","mainBtn","main");
+
+  // ===== Link click tracking (nav/footer/etc.) =====
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+
+    function cleanText(str) {
+      return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+    }
+
+    function getLinkText(a) {
+      return cleanText(a.getAttribute('aria-label')) ||
+             cleanText(a.getAttribute('title')) ||
+             cleanText(a.textContent) ||
+             'unknown';
+    }
+
+    function safeUrl(href) {
+      try { return new URL(href, window.location.href).href; }
+      catch { return ''; }
+    }
+
+    function isOutbound(absUrl) {
+      try { return new URL(absUrl).origin !== window.location.origin; }
+      catch { return false; }
+    }
+
+    function getSection(a) {
+      var el = a.closest('#nav, #hero, #demo, #download, #footer');
+      if (el && el.id) return el.id;
+
+      var footer = a.closest('footer');
+      if (footer) return 'footer';
+
+      var section = a.closest('section');
+      if (section && section.id) return section.id;
+
+      return 'unknown';
+    }
+
+    function getLinkType(a, absUrl) {
+      var href = (a.getAttribute('href') || '').toLowerCase();
+
+      if (a.classList.contains('cta')) return 'cta';
+      if (a.closest('.navbar')) return 'nav';
+      if (href.startsWith('mailto:')) return 'email';
+      if (href.startsWith('tel:')) return 'phone';
+      if (isOutbound(absUrl)) return 'outbound';
+      return 'regular';
+    }
+
+    document.addEventListener('click', function (e) {
+      var link = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+
+      var absUrl = safeUrl(href);
+      if (!absUrl) return;
+
+      window.dataLayer.push({
+        event: 'link_click',
+        link_text: getLinkText(link),
+        link_url: absUrl,
+        link_type: getLinkType(link, absUrl),
+        section: getSection(link),
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    }, true);
+  })();
 </script>
 
 </body>
