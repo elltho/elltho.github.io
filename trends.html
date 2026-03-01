@@ -1,153 +1,175 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+  <!-- Initialize dataLayer BEFORE GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id=GTM-PGJS6PKM'+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGJS6PKM');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demand Radar | Ellen Thorell</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <link rel="stylesheet" href="style.css">
 
- <style>
-  #demand-radar{
-    --ink:#000;
-    --paper:#fff;
-    --line: rgba(0,0,0,.18);
-    --accent:#6a00ff;
+  <style>
+    #demand-radar{
+      --ink:#000;
+      --paper:#fff;
+      --line: rgba(0,0,0,.18);
+      --accent:#6a00ff;
 
-    font-family: Arial, sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    margin:0;
-    padding:48px 56px;
-  }
+      font-family: Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      margin:0;
+      padding:48px 56px;
+    }
 
-  #demand-radar .brand{
-    font-weight:900;
-    letter-spacing:.2px;
-    margin:0 0 40px 0;
-  }
+    #demand-radar .brand{
+      font-weight:900;
+      letter-spacing:.2px;
+      margin:0 0 40px 0;
+    }
 
-  #demand-radar h1{
-    font-size: clamp(54px, 6vw, 96px);
-    line-height: .95;
-    letter-spacing:-1px;
-    margin: 0 0 14px 0;
-    text-transform: uppercase;
-  }
+    #demand-radar h1{
+      font-size: clamp(54px, 6vw, 96px);
+      line-height: .95;
+      letter-spacing:-1px;
+      margin: 0 0 14px 0;
+      text-transform: uppercase;
+    }
 
-  #demand-radar .sub{
-    max-width: 60ch;
-    font-size: 16px;
-    line-height: 1.5;
-    margin:0 0 28px 0;
-  }
+    #demand-radar .sub{
+      max-width: 60ch;
+      font-size: 16px;
+      line-height: 1.5;
+      margin:0 0 28px 0;
+    }
 
-  #demand-radar .panel{
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 18px;
-    margin: 18px 0;
-  }
+    #demand-radar .panel{
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+    }
 
-  #demand-radar .row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    align-items:center;
-  }
+    #demand-radar .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
 
-  #demand-radar input,
-  #demand-radar select{
-    padding: 12px 14px;
-    font-size: 14px;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: #fff;
-    min-width: 220px;
-  }
+    #demand-radar input,
+    #demand-radar select{
+      padding: 12px 14px;
+      font-size: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      min-width: 220px;
+    }
 
-  #demand-radar select{ min-width: 84px; }
+    #demand-radar select{ min-width: 84px; }
 
-  #demand-radar button{
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--ink);
-    background: transparent;
-    color: var(--ink);
-    cursor:pointer;
-    font-weight: 600;
-  }
+    #demand-radar button{
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor:pointer;
+      font-weight: 600;
+    }
 
-  #demand-radar button:hover{
-    background: rgba(0,0,0,.04);
-  }
+    #demand-radar button:hover{
+      background: rgba(0,0,0,.04);
+    }
 
-  #demand-radar .meta{
-    font-size: 13px;
-    color: rgba(0,0,0,.65);
-    margin-top: 10px;
-  }
+    #demand-radar .meta{
+      font-size: 13px;
+      color: rgba(0,0,0,.65);
+      margin-top: 10px;
+    }
 
-  #demand-radar .kicker{
-    font-size: 12px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: rgba(0,0,0,.7);
-  }
+    #demand-radar .kicker{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: rgba(0,0,0,.7);
+    }
 
-  #demand-radar #insightBox p{
-    margin: 6px 0;
-    font-size: 14px;
-  }
+    #demand-radar #insightBox p{
+      margin: 6px 0;
+      font-size: 14px;
+    }
 
-  #demand-radar ul{ padding-left: 18px; margin: 10px 0 0; }
-  #demand-radar li{ margin: 6px 0; }
+    #demand-radar ul{ padding-left: 18px; margin: 10px 0 0; }
+    #demand-radar li{ margin: 6px 0; }
 
-  #demand-radar canvas{ width:100% !important; height:auto !important; }
+    #demand-radar canvas{ width:100% !important; height:auto !important; }
 
-  #demand-radar .grid{
-    display:grid;
-    grid-template-columns: 1.35fr .65fr;
-    gap:18px;
-  }
+    #demand-radar .grid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+    }
 
-  #demand-radar a.back{
-    display:inline-block;
-    margin-top: 18px;
-    color: var(--ink);
-    text-decoration:none;
-    border-bottom: 1px solid var(--line);
-  }
+    #demand-radar a.back{
+      display:inline-block;
+      margin-top: 18px;
+      color: var(--ink);
+      text-decoration:none;
+      border-bottom: 1px solid var(--line);
+    }
 
-  @media (max-width: 980px){
-    #demand-radar{ padding: 28px 18px; }
-    #demand-radar .grid{ grid-template-columns: 1fr; }
-    #demand-radar input{ min-width: 180px; }
-  }
-</style>
+    @media (max-width: 980px){
+      #demand-radar{ padding: 28px 18px; }
+      #demand-radar .grid{ grid-template-columns: 1fr; }
+      #demand-radar input{ min-width: 180px; }
+    }
+  </style>
 </head>
-<body>
-  <nav class="navbar">
-  <div class="logo">
-    <a href="index.html" style="text-decoration: none; color: inherit;">
-      ELLEN THORELL©
-    </a>
-  </div>
-  <div class="nav-links">
-    <a href="cases.html">Work</a> 
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
-  <main id="demand-radar">
 
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGJS6PKM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav class="navbar" id="nav">
+    <div class="logo">
+      <a href="index.html" style="text-decoration: none; color: inherit;">
+        ELLEN THORELL©
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="cases.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main id="demand-radar">
     <h1>Demand Radar</h1>
     <p class="sub">Rapid demand insights powered by Google Trends.</p>
 
-    <div class="panel">
+    <div class="panel" id="hero">
       <div class="row">
         <input id="keyword" placeholder="Ex: padel, CRM, serum" />
         <select id="geo">
@@ -160,7 +182,7 @@
       <div id="status" class="meta"></div>
     </div>
 
-    <div class="grid">
+    <div class="grid" id="results">
       <div class="panel">
         <div class="kicker">Interest over time</div>
         <canvas id="chart"></canvas>
@@ -175,13 +197,74 @@
     </div>
 
     <a class="back" href="cases.html">← Back to selected cases</a>
-
-    <!-- Ditt <script> ska ligga här under, oförändrat -->
   </main>
 
 <script>
-  const API_BASE = "https://trends-api-livid.vercel.app/api/trends";
+  // ===== Link click tracking only =====
+  (function () {
+    window.dataLayer = window.dataLayer || [];
 
+    function cleanText(str) {
+      return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+    }
+
+    function getLinkText(a) {
+      return cleanText(a.getAttribute('aria-label')) ||
+             cleanText(a.getAttribute('title')) ||
+             cleanText(a.textContent) ||
+             'unknown';
+    }
+
+    function safeUrl(href) {
+      try { return new URL(href, window.location.href).href; }
+      catch { return ''; }
+    }
+
+    function isOutbound(absUrl) {
+      try { return new URL(absUrl).origin !== window.location.origin; }
+      catch { return false; }
+    }
+
+    function getSection(a) {
+      var el = a.closest('#nav, #hero, #results, #footer, main');
+      if (el && el.id) return el.id;
+      return 'unknown';
+    }
+
+    function getLinkType(a, absUrl) {
+      var href = (a.getAttribute('href') || '').toLowerCase();
+      if (a.classList.contains('cta')) return 'cta';
+      if (a.closest('.navbar')) return 'nav';
+      if (href.startsWith('mailto:')) return 'email';
+      if (href.startsWith('tel:')) return 'phone';
+      if (isOutbound(absUrl)) return 'outbound';
+      return 'regular';
+    }
+
+    document.addEventListener('click', function (e) {
+      var link = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+
+      var absUrl = safeUrl(href);
+      if (!absUrl) return;
+
+      window.dataLayer.push({
+        event: 'link_click',
+        link_text: getLinkText(link),
+        link_url: absUrl,
+        link_type: getLinkType(link, absUrl),
+        section: getSection(link),
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    }, true);
+  })();
+
+  // ===== Your existing Trends tool code (unchanged) =====
+  const API_BASE = "https://trends-api-livid.vercel.app/api/trends";
   let chart;
 
   async function run() {
@@ -212,13 +295,13 @@
       data: {
         labels,
         datasets: [{
-  label: "Search Interest",
-  data: values,
-  borderColor: "#b58cc6",      // din lila
-  backgroundColor: "#b58cc6",
-  pointBackgroundColor: "#b58cc6",
-  tension: 0.3
-}]
+          label: "Search Interest",
+          data: values,
+          borderColor: "#b58cc6",
+          backgroundColor: "#b58cc6",
+          pointBackgroundColor: "#b58cc6",
+          tension: 0.3
+        }]
       },
       options: {
         responsive: true,
@@ -242,14 +325,6 @@
 
   function renderInsights(timeline) {
     let insightBox = document.getElementById("insightBox");
-
-    if (!insightBox) {
-      insightBox = document.createElement("div");
-      insightBox.id = "insightBox";
-      insightBox.style.marginTop = "20px";
-      document.querySelector(".card:nth-of-type(2)").appendChild(insightBox);
-    }
-
     insightBox.innerHTML = "";
 
     if (!timeline || timeline.length < 12) return;
@@ -257,7 +332,6 @@
     const values = timeline.map(p => p.value);
     const n = values.length;
 
-    // ---- 1️⃣ Interest increased last 3 months ----
     const last12 = values.slice(n - 12);
     const prev12 = values.slice(n - 24, n - 12);
 
@@ -273,17 +347,13 @@
       }
     }
 
-    // ---- 2️⃣ Spike detected ----
     const max = Math.max(...values);
     const maxIndex = values.indexOf(max);
     const spikeDate = timeline[maxIndex].date;
-
     addLine(`Spike detected in ${spikeDate}`);
 
-    // ---- 3️⃣ Seasonal pattern detection ----
     const firstHalf = values.slice(0, Math.floor(n/2));
     const secondHalf = values.slice(Math.floor(n/2));
-
     const diff = Math.abs(avg(firstHalf) - avg(secondHalf));
 
     if (diff > 15) {
