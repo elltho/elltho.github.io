@@ -21,6 +21,7 @@
   <title>Demand Radar | Ellen Thorell</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -177,7 +178,7 @@
           <option value="US">US</option>
           <option value="GB">GB</option>
         </select>
-        <button onclick="run()">Analyze</button>
+        <button onclick="run()" type="button">Analyze</button>
       </div>
       <div id="status" class="meta"></div>
     </div>
@@ -199,176 +200,112 @@
     <a class="back" href="cases.html">← Back to selected cases</a>
   </main>
 
-<script>
-  // ===== Link click tracking only =====
-  (function () {
-    window.dataLayer = window.dataLayer || [];
+  <!-- Your existing Trends tool code (unchanged) -->
+  <script>
+    const API_BASE = "https://trends-api-livid.vercel.app/api/trends";
+    let chart;
 
-    function cleanText(str) {
-      return (str || '').trim().replace(/\s+/g, ' ').slice(0, 200);
+    async function run() {
+      const keyword = document.getElementById("keyword").value.trim();
+      const geo = document.getElementById("geo").value;
+
+      if (!keyword) return alert("Skriv ett keyword först");
+
+      const url = `${API_BASE}?keyword=${encodeURIComponent(keyword)}&geo=${encodeURIComponent(geo)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      renderChart(data.timeline || []);
+      renderRising(data.rising || []);
+      renderInsights(data.timeline || []);
     }
 
-    function getLinkText(a) {
-      return cleanText(a.getAttribute('aria-label')) ||
-             cleanText(a.getAttribute('title')) ||
-             cleanText(a.textContent) ||
-             'unknown';
-    }
+    function renderChart(timeline) {
+      const labels = timeline.map(p => p.date);
+      const values = timeline.map(p => p.value);
 
-    function safeUrl(href) {
-      try { return new URL(href, window.location.href).href; }
-      catch { return ''; }
-    }
+      const ctx = document.getElementById("chart").getContext("2d");
 
-    function isOutbound(absUrl) {
-      try { return new URL(absUrl).origin !== window.location.origin; }
-      catch { return false; }
-    }
+      if (chart) chart.destroy();
 
-    function getSection(a) {
-      var el = a.closest('#nav, #hero, #results, #footer, main');
-      if (el && el.id) return el.id;
-      return 'unknown';
-    }
-
-    function getLinkType(a, absUrl) {
-      var href = (a.getAttribute('href') || '').toLowerCase();
-      if (a.classList.contains('cta')) return 'cta';
-      if (a.closest('.navbar')) return 'nav';
-      if (href.startsWith('mailto:')) return 'email';
-      if (href.startsWith('tel:')) return 'phone';
-      if (isOutbound(absUrl)) return 'outbound';
-      return 'regular';
-    }
-
-    document.addEventListener('click', function (e) {
-      var link = e.target && e.target.closest ? e.target.closest('a') : null;
-      if (!link) return;
-
-      var href = link.getAttribute('href');
-      if (!href || href === '#') return;
-
-      var absUrl = safeUrl(href);
-      if (!absUrl) return;
-
-      window.dataLayer.push({
-        event: 'link_click',
-        link_text: getLinkText(link),
-        link_url: absUrl,
-        link_type: getLinkType(link, absUrl),
-        section: getSection(link),
-        page_path: window.location.pathname,
-        page_title: document.title
+      chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Search Interest",
+            data: values,
+            borderColor: "#b58cc6",
+            backgroundColor: "#b58cc6",
+            pointBackgroundColor: "#b58cc6",
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
       });
-    }, true);
-  })();
+    }
 
-  // ===== Your existing Trends tool code (unchanged) =====
-  const API_BASE = "https://trends-api-livid.vercel.app/api/trends";
-  let chart;
+    function renderRising(items) {
+      const list = document.getElementById("rising");
+      list.innerHTML = "";
 
-  async function run() {
-    const keyword = document.getElementById("keyword").value.trim();
-    const geo = document.getElementById("geo").value;
+      items.slice(0, 8).forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.query} (${item.value})`;
+        list.appendChild(li);
+      });
+    }
 
-    if (!keyword) return alert("Skriv ett keyword först");
+    function renderInsights(timeline) {
+      let insightBox = document.getElementById("insightBox");
+      insightBox.innerHTML = "";
 
-    const url = `${API_BASE}?keyword=${encodeURIComponent(keyword)}&geo=${encodeURIComponent(geo)}`;
-    const res = await fetch(url);
-    const data = await res.json();
+      if (!timeline || timeline.length < 12) return;
 
-    renderChart(data.timeline || []);
-    renderRising(data.rising || []);
-    renderInsights(data.timeline || []);
-  }
+      const values = timeline.map(p => p.value);
+      const n = values.length;
 
-  function renderChart(timeline) {
-    const labels = timeline.map(p => p.date);
-    const values = timeline.map(p => p.value);
+      const last12 = values.slice(n - 12);
+      const prev12 = values.slice(n - 24, n - 12);
 
-    const ctx = document.getElementById("chart").getContext("2d");
+      const avg = arr => arr.reduce((a,b)=>a+b,0) / arr.length;
 
-    if (chart) chart.destroy();
+      if (prev12.length > 0) {
+        const change = ((avg(last12) - avg(prev12)) / avg(prev12)) * 100;
 
-    chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels,
-        datasets: [{
-          label: "Search Interest",
-          data: values,
-          borderColor: "#b58cc6",
-          backgroundColor: "#b58cc6",
-          pointBackgroundColor: "#b58cc6",
-          tension: 0.3
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true, max: 100 }
+        if (change > 5) {
+          addLine(`Interest increased ${change.toFixed(0)}% last 3 months`);
+        } else if (change < -5) {
+          addLine(`Interest decreased ${Math.abs(change).toFixed(0)}% last 3 months`);
         }
       }
-    });
-  }
 
-  function renderRising(items) {
-    const list = document.getElementById("rising");
-    list.innerHTML = "";
+      const max = Math.max(...values);
+      const maxIndex = values.indexOf(max);
+      const spikeDate = timeline[maxIndex].date;
+      addLine(`Spike detected in ${spikeDate}`);
 
-    items.slice(0, 8).forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = `${item.query} (${item.value})`;
-      list.appendChild(li);
-    });
-  }
+      const firstHalf = values.slice(0, Math.floor(n/2));
+      const secondHalf = values.slice(Math.floor(n/2));
+      const diff = Math.abs(avg(firstHalf) - avg(secondHalf));
 
-  function renderInsights(timeline) {
-    let insightBox = document.getElementById("insightBox");
-    insightBox.innerHTML = "";
+      if (diff > 15) {
+        addLine("Seasonal pattern detected");
+      }
 
-    if (!timeline || timeline.length < 12) return;
-
-    const values = timeline.map(p => p.value);
-    const n = values.length;
-
-    const last12 = values.slice(n - 12);
-    const prev12 = values.slice(n - 24, n - 12);
-
-    const avg = arr => arr.reduce((a,b)=>a+b,0) / arr.length;
-
-    if (prev12.length > 0) {
-      const change = ((avg(last12) - avg(prev12)) / avg(prev12)) * 100;
-
-      if (change > 5) {
-        addLine(`Interest increased ${change.toFixed(0)}% last 3 months`);
-      } else if (change < -5) {
-        addLine(`Interest decreased ${Math.abs(change).toFixed(0)}% last 3 months`);
+      function addLine(text) {
+        const p = document.createElement("p");
+        p.style.margin = "4px 0";
+        p.style.fontWeight = "500";
+        p.textContent = text;
+        insightBox.appendChild(p);
       }
     }
-
-    const max = Math.max(...values);
-    const maxIndex = values.indexOf(max);
-    const spikeDate = timeline[maxIndex].date;
-    addLine(`Spike detected in ${spikeDate}`);
-
-    const firstHalf = values.slice(0, Math.floor(n/2));
-    const secondHalf = values.slice(Math.floor(n/2));
-    const diff = Math.abs(avg(firstHalf) - avg(secondHalf));
-
-    if (diff > 15) {
-      addLine("Seasonal pattern detected");
-    }
-
-    function addLine(text) {
-      const p = document.createElement("p");
-      p.style.margin = "4px 0";
-      p.style.fontWeight = "500";
-      p.textContent = text;
-      insightBox.appendChild(p);
-    }
-  }
-</script>
-
+  </script>
 </body>
 </html>
