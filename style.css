@@ -593,7 +593,7 @@ main:has(.work-grid) {
 /* Make BOTH sections align and have more side whitespace */
 body.cases-page main.page-wrap,
 body.cases-page .testimonial-section{
-  max-width: 1100px !important;     /* try 1000px for even more whitespace */
+  max-width: 1240px !important;     /* try 1000px for even more whitespace */
   margin: 0 auto !important;
   padding-left: 4.5rem !important;  /* more whitespace on sides */
   padding-right: 4.5rem !important;
@@ -639,4 +639,19 @@ body.cases-page .work-grid{
 /* Fix zoomed images (keep contain) */
 body.cases-page .buddy-track img{
   object-fit: contain !important;
+}
+/* ===== CASES PAGE: tighter typography so text fits ===== */
+
+body.cases-page .buddy-title{
+  font-size: 1.25rem; /* was 1.4 */
+}
+
+body.cases-page .buddy-meta{
+  font-size: 0.68rem; /* was 0.75 */
+  margin-bottom: 8px;
+}
+
+body.cases-page .buddy-desc{
+  font-size: 0.82rem;  /* was 0.9 */
+  line-height: 1.38;   /* was 1.5 */
 }
