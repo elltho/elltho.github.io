@@ -66,6 +66,20 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* REMOVE HOVER EFFECT (cases page only)
+       This neutralizes any hover lift/shadow coming from style.css */
+    body.cases-page .buddy-box,
+    body.cases-page .buddy-link{
+      transition: none !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    body.cases-page .buddy-box:hover,
+    body.cases-page .buddy-link:hover{
+      transform: none !important;
+      box-shadow: none !important;
+    }
   </style>
 </head>
 
@@ -213,7 +227,7 @@
           </div>
         </div>
 
-        <!-- AKADEMIBOKHANDELN (✅ restored) -->
+        <!-- AKADEMIBOKHANDELN -->
         <div class="buddy-box">
           <div class="buddy-slider-area" style="background:#f4f4f4;">
             <div class="buddy-track" id="akademibokhandeln-slider">
@@ -232,7 +246,7 @@
           </div>
         </div>
 
-        <!-- DRYPOPS (✅ restored) -->
+        <!-- DRYPOPS -->
         <div class="buddy-box">
           <div class="buddy-slider-area" style="background:#F4E0E0;">
             <div class="buddy-track" id="strawberry-slider">
